@@ -1,0 +1,7 @@
+{
+  "name": "Yingo Contractors - Construction & Furniture Limited",
+  "description": "Premier site building, civil engineering, and bespoke handcrafted solid hardwood furniture building and nationwide sales across all districts of Uganda.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
