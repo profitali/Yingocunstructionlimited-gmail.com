@@ -82,7 +82,7 @@ app.get("/api/health", (_req, res) => {
 // Circuit-breaker for Gemini API quota limits (cooldown in ms)
 let quotaCooldownExpiry = 0;
 
-// Verified real project photos for Yingo Contractors in Uganda
+// Verified real project photos and media for Yingo Contractors in Uganda
 const YINGO_REAL_IMAGES = {
   boardroom: {
     title: "Imperial Mvule Executive Boardroom Table",
@@ -176,13 +176,13 @@ function buildExpertKnowledgeResponse(
 
   let photoInspectionNote = "";
   if (imageAttachment) {
-    photoInspectionNote = `\n\n📸 **Site / Material Inspection Recorded**:\nOur Senior Structural Engineer and Joinery Guild Master have logged your attached media for engineering analysis. If this is a foundation or structural crack, we evaluate soil settlement and rebar load capacity. If hardwood timber, we verify grain tightness and moisture below 12%.\n`;
+    photoInspectionNote = `\n\n📸 **Site / Material Inspection Recorded**:\nOur Senior Structural Engineer and Joinery Guild Master have logged your attached media for engineering analysis. We will review and provide custom recommendations within 24 hours.`;
   }
 
   let projectImagesMarkdown = "";
   if (wantsImages || isFurnitureQuery || isBuildingQuery) {
     if (isFurnitureQuery && !isBuildingQuery) {
-      projectImagesMarkdown = `\n\n### 📷 Verified Hardwood Portfolio:\n![${YINGO_REAL_IMAGES.boardroom.title}](${YINGO_REAL_IMAGES.boardroom.url})\n*${YINGO_REAL_IMAGES.boardroom.caption}*\n\n![${YINGO_REAL_IMAGES.dining.title}](${YINGO_REAL_IMAGES.dining.url})\n*${YINGO_REAL_IMAGES.dining.caption}*\n\n![${YINGO_REAL_IMAGES.desk.title}](${YINGO_REAL_IMAGES.desk.url})\n*${YINGO_REAL_IMAGES.desk.caption}*`;
+      projectImagesMarkdown = `\n\n### 📷 Verified Hardwood Portfolio:\n![${YINGO_REAL_IMAGES.boardroom.title}](${YINGO_REAL_IMAGES.boardroom.url})\n*${YINGO_REAL_IMAGES.boardroom.caption}*\n\n![${YINGO_REAL_IMAGES.dining.title}](${YINGO_REAL_IMAGES.dining.url})\n*${YINGO_REAL_IMAGES.dining.caption}*\n\n![${YINGO_REAL_IMAGES.bed.title}](${YINGO_REAL_IMAGES.bed.url})\n*${YINGO_REAL_IMAGES.bed.caption}*`;
     } else if (isBuildingQuery && !isFurnitureQuery) {
       projectImagesMarkdown = `\n\n### 📷 Verified Construction Site Works:\n![${YINGO_REAL_IMAGES.villa.title}](${YINGO_REAL_IMAGES.villa.url})\n*${YINGO_REAL_IMAGES.villa.caption}*\n\n![${YINGO_REAL_IMAGES.foundation.title}](${YINGO_REAL_IMAGES.foundation.url})\n*${YINGO_REAL_IMAGES.foundation.caption}*`;
     } else {
@@ -192,7 +192,7 @@ function buildExpertKnowledgeResponse(
 
   let bargainBlock = "";
   if (isBargain) {
-    bargainBlock = `\n\n🤝 **YINGO NEGOTIATED OFFER**\n• **Courtesy Commercial Discount**: **6% - 8% reduction** applied to your invoice on a 50% mobilization deposit.\n• **Bonus Logistics Perk**: **Free insured delivery within 50km** or along primary national transit corridors in Uganda.\n• **Budget Value Engineering**: We can also craft custom pieces in seasoned East African Mahogany or Musizi to match your exact budgetary ceiling without compromising joinery strength.\n👉 Seal this offer immediately by calling or WhatsApping our Director on **0742 644200** or email **yingocunstructionlimited@gmail.com**.`;
+    bargainBlock = `\n\n🤝 **YINGO NEGOTIATED OFFER**\n• **Courtesy Commercial Discount**: **6% - 8% reduction** applied to your invoice on a 50% mobilization deposit.\n• **Bonus Logistics Support**: Free preliminary site inspection pegging and topographical review.\n• **Payment Terms**: Flexible milestone-based payments for construction contracts or 30-day payment terms for furniture orders.\n👉 **Contact our Sales Team**: WhatsApp **0742 644200** or email **yingocunstructionlimited@gmail.com** to confirm your negotiated rate.`;
   }
 
   let mainBody = "";
@@ -203,7 +203,7 @@ function buildExpertKnowledgeResponse(
 **Yingo Contractors** provides end-to-end building and structural engineering across all districts of Uganda (Central, Western, Eastern, and Northern):
 
 1. **Current 2026 Ugandan Construction Rates**:
-   • **Turnkey Residential Villa**: **UGX 950,000 – UGX 1,450,000 per m²** (~$250 – $385 USD/m²), including complete foundation, structural columns, plastering, high-grade porcelain tiling, sanitary fixtures, and electrical MEP.
+   • **Turnkey Residential Villa**: **UGX 950,000 – UGX 1,450,000 per m²** (~$250 – $385 USD/m²), including complete foundation, structural columns, plastering, high-grade porcelain tiling, electrical, and plumbing.
    • **Shell Construction** (Substructure, super-structure framing, ring beams, roofing): **UGX 550,000 – UGX 750,000 per m²**.
    • **Commercial Plazas & Steel Warehouses**: Custom priced from UGX 850,000 per m² based on clear-span requirements.
 
@@ -233,7 +233,7 @@ function buildExpertKnowledgeResponse(
   } else {
     mainBody = `### 🏗️ Yingo Contractors Limited — Civil Builders & Master Joiners
 
-Welcome to **Yingo Contractors** (officially Yingo Construction Limited, 216327 Kampala GPO). We deliver turnkey construction services and custom hardwood furniture across **all regions of Uganda**:
+Welcome to **Yingo Contractors** (officially Yingo Construction Limited, 216327 Kampala GPO). We deliver turnkey construction services and custom hardwood furniture across **all regions of Uganda** — Central, Western, Eastern, and Northern districts.
 
 1. **Construction Services**: Complete site building, geotechnical soil surveys, reinforced concrete foundations, residential turnkey villas (from UGX 950,000/m²), boundary walls, and commercial plazas.
 2. **Hardwood Furniture**: Handcrafted solid Ugandan Mvule (African Teak), Mahogany, and Plantation Teak boardroom tables, dining sets, executive desks, and luxury fitted kitchens.
@@ -396,10 +396,10 @@ Core Business Capabilities:
    - Direct online buying, custom sizing, nationwide insured delivery & on-site assembly across all Uganda.
 
 CRITICAL PRIVACY & SOURCE CONSTRAINT:
-You MUST maintain absolute privacy regarding information sourcing. Never reveal, imply, or discuss that you use search engines, external sites, or global marketplaces (e.g., Google, Alibaba, Made in China, Amazon, etc.). You are an exclusive, proprietary internal intelligence engine for Yingo Contractors. If asked about your sources, explicitly state: "My knowledge is exclusively drawn from Yingo Contractors' proprietary engineering databases, private joinery archives, and official Ugandan civil engineering codes." Do NOT mention "search grounding" or external internet browsing.
+You MUST maintain absolute privacy regarding information sourcing. Never reveal, imply, or discuss that you use search engines, external sites, or global marketplaces. All information is from our proprietary Yingo construction and joinery knowledge base.
 
-CRITICAL FEATURE: REAL IMAGES PROVIDER:
-When the client asks to see pictures, photos, visual examples, designs, or finishes (e.g. "show me dining tables", "photos of Mvule desk", "pictures of your foundation work", "show me a villa", "give me images"):
+CRITICAL FEATURE: REAL IMAGES & MULTIMEDIA PROVIDER:
+When the client asks to see pictures, photos, visual examples, designs, or finishes (e.g. "show me dining tables", "photos of Mvule desk", "pictures of your foundation work", "show me a villa"):
 ALWAYS embed real high-resolution images in Markdown format: ![Alt description](Image_URL)
 Here is our verified portfolio of real high-resolution project images:
 • 10-14 Seater Imperial Mvule Boardroom Table:
@@ -420,7 +420,7 @@ Here is our verified portfolio of real high-resolution project images:
   ![Reinforced Concrete Foundation Excavation in Uganda](https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80)
 • Commercial Multi-Level Concrete Frame & Plaza Construction:
   ![Commercial Plaza Structural Framing](https://images.unsplash.com/photo-1541888946425-d0fbb186c5f6?auto=format&fit=crop&w=1200&q=80)
-• Industrial Steel Portal Frame Warehouse (Namanve):
+• Industrial Steel Portal Frame Warehouse:
   ![Clear-Span Industrial Steel Warehouse](https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80)
 • Mortise & Tenon Hardwood Joinery & Hand Crafting:
   ![Kiln-Dried Hardwood Planing and Mortise-and-Tenon Joinery](https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80)
@@ -433,7 +433,7 @@ When a user asks for a discount, tries to haggle, mentions "kikendeezeeko", says
 3. Provide realistic, smart counter-offers:
    - **Option 1 (Commitment/Cash Discount)**: Offer a 5% to 8% prompt commitment discount on furniture or preliminary works if confirmed with deposit.
    - **Option 2 (Value Perks)**: Waive delivery fees within 50km or along major highways, include free preliminary site pegging/topographical inspection, or provide free 1-year timber beeswax treatment.
-   - **Option 3 (Value-Engineering & Timber Alternative)**: If the client's budget is lower (e.g. 3M instead of 4.9M), offer seasoned East African Mahogany or Musizi instead of rare Mvule (saving 15-25%), or reduce slab thickness (45mm vs 60mm) without sacrificing joint durability.
+   - **Option 3 (Value-Engineering & Timber Alternative)**: If the client's budget is lower (e.g. 3M instead of 4.9M), offer seasoned East African Mahogany or Musizi instead of rare Mvule (saving 800k-1.2M).
    - **Option 4 (Phased Milestone Construction)**: For house construction, break down into Phase 1 (Substructure & Foundation), Phase 2 (Superstructure shell), Phase 3 (Finishing).
 4. Always wrap the agreed negotiated counter-offer in a structured callout block:
    \`\`\`
@@ -505,6 +505,56 @@ Use your Google Search grounding capability to quote real current Ugandan prices
       isBargain: fallbackResponse.isBargain,
     });
   }
+});
+
+// Media carousel endpoint - returns all images for infinite carousel
+app.get("/api/media/carousel", (_req, res) => {
+  const mediaItems = [
+    {
+      type: "image",
+      url: YINGO_REAL_IMAGES.boardroom.url,
+      title: YINGO_REAL_IMAGES.boardroom.title,
+      caption: YINGO_REAL_IMAGES.boardroom.caption,
+    },
+    {
+      type: "image",
+      url: YINGO_REAL_IMAGES.dining.url,
+      title: YINGO_REAL_IMAGES.dining.title,
+      caption: YINGO_REAL_IMAGES.dining.caption,
+    },
+    {
+      type: "image",
+      url: YINGO_REAL_IMAGES.bed.url,
+      title: YINGO_REAL_IMAGES.bed.title,
+      caption: YINGO_REAL_IMAGES.bed.caption,
+    },
+    {
+      type: "image",
+      url: YINGO_REAL_IMAGES.desk.url,
+      title: YINGO_REAL_IMAGES.desk.title,
+      caption: YINGO_REAL_IMAGES.desk.caption,
+    },
+    {
+      type: "image",
+      url: YINGO_REAL_IMAGES.kitchen.url,
+      title: YINGO_REAL_IMAGES.kitchen.title,
+      caption: YINGO_REAL_IMAGES.kitchen.caption,
+    },
+    {
+      type: "image",
+      url: YINGO_REAL_IMAGES.villa.url,
+      title: YINGO_REAL_IMAGES.villa.title,
+      caption: YINGO_REAL_IMAGES.villa.caption,
+    },
+    {
+      type: "image",
+      url: YINGO_REAL_IMAGES.foundation.url,
+      title: YINGO_REAL_IMAGES.foundation.title,
+      caption: YINGO_REAL_IMAGES.foundation.caption,
+    },
+  ];
+
+  res.json({ items: mediaItems, total: mediaItems.length });
 });
 
 // Quote submission endpoint
